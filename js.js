@@ -14,12 +14,6 @@ console.log(screens.length);
 console.log("Стоимость верстки экранов " + screenPrice + " рублей/ долларов/гривен/юани")
 console.log("Стоимость разработки сайта " + fullPrice + " рублей/ долларов/гривен/юани")
 
-// let newScreens = screens.toLocaleLowerCase();
-// console.log(newScreens);
-// console.log(newScreens.split());
-// var space = ' ';
-// console.log(newScreens.split(space));
-
 console.log(screens.toLocaleLowerCase().split(','));
 
 console.log(fullPrice*(rollback/100));
