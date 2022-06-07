@@ -1,9 +1,9 @@
 'use strict'
 
-let title = "JS_project";
-let screens = "Простые, Сложные, Интерактивные";
-// let screenPrice = 57;
-let rollback = 100;
+// let title = "JS_project";
+// let screens = "Простые, Сложные, Интерактивные";
+// // let screenPrice = 57;
+
 // let fullPrice = 100500;
 // let adaptive = true;
 
@@ -20,54 +20,59 @@ let rollback = 100;
 
 // console.log(fullPrice*(rollback/100));
 
-// //task 3
-// let title = prompt("Как называется ваш проект?");
-// console.log(title);
-
-// //task 4
-// let screens  = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
-// console.log(screens);
-
-//task 5
+//task 3
+let title = prompt("Как называется ваш проект?");
+let screens  = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 let screenPrice   = +prompt("Сколько будет стоить данная работа?", "12000");
-console.log(screenPrice );
-
-//task 6
-let adaptive = confirm("Нужен ли адаптив на сайте?");
-
-//task 7
 let service1   = prompt("Какой дополнительный тип услуги нужен?");
-console.log(service1);
-
-let servicePrice1   = +prompt("Сколько это будет стоить?");
-console.log(servicePrice1);
-
+let servicePrice1 = +prompt("Сколько это будет стоить?");
 let service2   = prompt("Какой дополнительный тип услуги нужен?");
-console.log(service2);
-
-let servicePrice2   = +prompt("Сколько это будет стоить?");
-console.log(servicePrice2);
-
-//task 8
+let servicePrice2 = +prompt("Сколько это будет стоить?");
 let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-console.log(fullPrice);
+let rollback = 100;
+let allServicePrices;
+let servicePercentPrice;
 
-//task 9
-let servicePercentPrice = Math.ceil(fullPrice - rollback );
-console.log(servicePercentPrice);
 
-//task 10
-switch (true) {
-    case fullPrice >= 3000:
-        console.log("Даем скидку в 10%");
-        break;
-    case 15000 < fullPrice && fullPrice < 30000:
-        console.log("Даем скидку в 5%");
-        break;
-    case 15000 >= fullPrice && fullPrice > 0:
-        console.log("Скидка не предусмотрена");
-        break;
-    case fullPrice <= 0:
-        console.log("Что то пошло не так");
-        break;
+let getAllServicePrices = function (value1, value2) {
+    allServicePrices = value1 + value2;
+    return allServicePrices;
+};
+
+function getFullPrice(price, allPrice) {
+    fullPrice = price + allPrice;
+    return fullPrice;
 }
+
+let getTitle = function (string) {
+    let stringTrim = string.trim();
+    return stringTrim[0].toUpperCase() + stringTrim.substring(1);
+};
+
+let getServicePercentPrices = function (price, r_back) {
+    servicePercentPrice = price - r_back;
+    return servicePercentPrice;
+};
+
+let getRollbackMessage = function () {
+    switch (true) {
+        case fullPrice >= 3000:
+            return "Даем скидку в 10%";
+            break;
+        case 15000 < fullPrice && fullPrice < 30000:
+            return "Даем скидку в 5%";
+            break;
+        case 15000 >= fullPrice && fullPrice > 0:
+            return "Скидка не предусмотрена";
+            break;
+        case fullPrice <= 0:
+            return "Что то пошло не так";
+            break;
+    }
+};
+
+console.log(getTitle(title));
+console.log("Сумма всех дополнительных услуг " + getAllServicePrices(servicePrice1, servicePrice2));
+console.log("Cумму стоимости верстки и стоимости дополнительных услуг " + getFullPrice(screenPrice, allServicePrices));
+console.log("Итоговая стоимость за вычетом процента отката " + getServicePercentPrices(fullPrice, rollback));
+console.log(getRollbackMessage());
