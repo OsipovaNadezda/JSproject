@@ -1,26 +1,5 @@
 'use strict'
 
-// let title = "JS_project";
-// let screens = "Простые, Сложные, Интерактивные";
-// // let screenPrice = 57;
-
-// let fullPrice = 100500;
-// let adaptive = true;
-
-// console.log(typeof title);
-// console.log(typeof fullPrice);
-// console.log(typeof adaptive);
-
-// console.log(screens.length);
-
-// console.log("Стоимость верстки экранов " + screenPrice + " рублей/ долларов/гривен/юани")
-// console.log("Стоимость разработки сайта " + fullPrice + " рублей/ долларов/гривен/юани")
-
-// console.log(screens.toLocaleLowerCase().split(','));
-
-// console.log(fullPrice*(rollback/100));
-
-//task 3
 let title = prompt("Как называется ваш проект?");
 let screens  = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 let screenPrice   = +prompt("Сколько будет стоить данная работа?", "12000");
@@ -32,7 +11,6 @@ let fullPrice = screenPrice + servicePrice1 + servicePrice2;
 let rollback = 100;
 let allServicePrices;
 let servicePercentPrice;
-
 
 let getAllServicePrices = function (value1, value2) {
     allServicePrices = value1 + value2;
