@@ -1,38 +1,37 @@
 'use strict'
 
-let title = prompt("Как называется ваш проект?");
-let screens  = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
-let screenPrice   = +prompt("Сколько будет стоить данная работа?", "12000");
-let service1   = prompt("Какой дополнительный тип услуги нужен?");
+let title1 = prompt("Как называется ваш проект?");
+let screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
+let screenPrice = +prompt("Сколько будет стоить данная работа?", "12000");
+
+let service1 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice1 = +prompt("Сколько это будет стоить?");
-let service2   = prompt("Какой дополнительный тип услуги нужен?");
+let service2 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice2 = +prompt("Сколько это будет стоить?");
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+
+let fullPrice;
 let rollback = 100;
 let allServicePrices;
 let servicePercentPrice;
 
-let getAllServicePrices = function (value1, value2) {
-    allServicePrices = value1 + value2;
-    return allServicePrices;
+const getAllServicePrices = function (value1, value2) {
+    return value1 + value2;
 };
 
 function getFullPrice(price, allPrice) {
-    fullPrice = price + allPrice;
-    return fullPrice;
+    return price + allPrice;
 }
 
-let getTitle = function (string) {
+const getTitle = function (string) {
     let stringTrim = string.trim();
     return stringTrim[0].toUpperCase() + stringTrim.substring(1);
 };
 
-let getServicePercentPrices = function (price, r_back) {
-    servicePercentPrice = price - r_back;
-    return servicePercentPrice;
+const getServicePercentPrices = function (price, r_back) {
+    return price - r_back;
 };
 
-let getRollbackMessage = function () {
+const getRollbackMessage = function () {
     switch (true) {
         case fullPrice >= 3000:
             return "Даем скидку в 10%";
@@ -49,8 +48,21 @@ let getRollbackMessage = function () {
     }
 };
 
+const showTypeOf = function (var_function) {
+    console.log(var_function, typeof var_function);
+};
+
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+fullPrice = getFullPrice(screenPrice, allServicePrices);
+servicePercentPrice = getAllServicePrices(fullPrice, rollback);
+title =getTitle(title1);
+
+showTypeOf(title1);
+showTypeOf(screens);
+showTypeOf(screenPrice);
+
 console.log(getTitle(title));
-console.log("Сумма всех дополнительных услуг " + getAllServicePrices(servicePrice1, servicePrice2));
-console.log("Cумму стоимости верстки и стоимости дополнительных услуг " + getFullPrice(screenPrice, allServicePrices));
-console.log("Итоговая стоимость за вычетом процента отката " + getServicePercentPrices(fullPrice, rollback));
+console.log("Сумма всех дополнительных услуг " + allServicePrices);
+console.log("Cумму стоимости верстки и стоимости дополнительных услуг " + fullPrice);
+console.log("Итоговая стоимость за вычетом процента отката " + servicePercentPrice);
 console.log(getRollbackMessage());
