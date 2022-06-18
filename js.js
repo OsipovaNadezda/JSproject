@@ -9,6 +9,7 @@ let servicePrice1 = +prompt("Сколько это будет стоить?");
 let service2 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice2 = +prompt("Сколько это будет стоить?");
 
+let title;
 let fullPrice;
 let rollback = 100;
 let allServicePrices;
@@ -55,7 +56,7 @@ const showTypeOf = function (var_function) {
 allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getAllServicePrices(fullPrice, rollback);
-title =getTitle(title1);
+title = getTitle(title1);
 
 showTypeOf(title1);
 showTypeOf(screens);
