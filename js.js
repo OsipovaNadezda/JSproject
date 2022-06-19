@@ -1,26 +1,54 @@
 'use strict'
 
-let title1 = prompt("Как называется ваш проект?");
-let screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
-let screenPrice = +prompt("Сколько будет стоить данная работа?", "12000");
-
-let service1 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice1 = +prompt("Сколько это будет стоить?");
-let service2 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice2 = +prompt("Сколько это будет стоить?");
-
+let title1;
 let title;
+let screens;
+let screenPrice;
+let adaptive;
 let fullPrice;
 let rollback = 100;
 let allServicePrices;
 let servicePercentPrice;
+let service1;
+let service2;
 
-const getAllServicePrices = function (value1, value2) {
-    return value1 + value2;
+const isNumber = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
 };
 
-function getFullPrice(price, allPrice) {
-    return price + allPrice;
+const asking = function () {
+    title1 = prompt("Как называется ваш проект?", "Проект");
+    screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
+
+    do {
+        screenPrice = prompt("Сколько будет стоить данная работа?", "12000");
+    } while (!isNumber(screenPrice));
+
+    adaptive = confirm("Нужен ли адаптив на сайте?");
+};
+
+const getAllServicePrices = function () {
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {
+        let question;
+
+        if (i === 0) {
+            service1 = prompt("Какой дополнительный тип услуги нужен?", "Метрика1");
+        } else if (i === 1) {
+            service2 = prompt("Какой дополнительный тип услуги нужен?", "Метрика2");
+        }
+
+        do {
+            question = prompt("Сколько это будет стоит?", "1000");
+        } while (!isNumber(question));
+
+        sum += +question;
+    }
+    return sum;
+};
+
+function getFullPrice() {
+    return +screenPrice + allServicePrices;
 }
 
 const getTitle = function (string) {
@@ -53,15 +81,17 @@ const showTypeOf = function (var_function) {
     console.log(var_function, typeof var_function);
 };
 
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+asking();
+allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(screenPrice, allServicePrices);
-servicePercentPrice = getAllServicePrices(fullPrice, rollback);
+servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 title = getTitle(title1);
 
 showTypeOf(title1);
 showTypeOf(screens);
 showTypeOf(screenPrice);
 
+console.log("allServicePrices " + allServicePrices);
 console.log(getTitle(title));
 console.log("Сумма всех дополнительных услуг " + allServicePrices);
 console.log("Cумму стоимости верстки и стоимости дополнительных услуг " + fullPrice);
